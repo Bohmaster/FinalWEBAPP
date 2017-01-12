@@ -1,0 +1,285 @@
+<div class="seccionbuscador w-clearfix">
+<div class="ciudad">
+      <div class="divbuscad w-clearfix">
+        <h1 class="descubritxt">Buscar en</h1>
+        <div class="formcity w-form">
+          <form class="formciuddad" id="email-form-2" name="email-form-2">
+            <select class="elegiciudad w-select" ng-model="home.selectedCity" ng-change="home.changeCity(); home.selectedCategory={}; home.scrollToSection('.formciuddad')">
+              <option ng-repeat="city in home.cities" value='{{city}}'>{{city.name}}</option>
+            </select>
+          </form>
+          <div class="w-form-done">
+            <div>Thank you! Your submission has been received!</div>
+          </div>
+          <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divfiltrosbuscador w-clearfix">
+      <div class="comercio-filtro w-clearfix">
+        <a class="linkweb w-inline-block" href="#">
+          <div class="filtromuro filtrosweb" ng-click="home.selectedPage = 1; home.getSelectedEntry('Publicaciones', $event);home.selectedCategory={}">Promociones</div><img class="icono" src="images/publicacionloog-01.png">
+        </a>
+      </div>
+      <div class="comercio-filtro publifiltro w-clearfix">
+        <a class="filtrosmuro linkweb w-inline-block" href="#">
+          <div class="filtromuro filtrosweb" ng-click="home.selectedPage = 1; home.getSelectedEntry('Comercios', $event);home.selectedCategory={}">Comercios</div><img class="icono" src="images/localeslogo-01.png">
+        </a>
+      </div>
+      <div class="comercio-filtro filtroproducto w-clearfix">
+        <a class="linkweb w-inline-block" href="#">
+          <div class="divfiltrosss">
+            <div class="filtromuro filtrosweb" ng-click="home.selectedPage = 1; home.getSelectedEntry('Productos', $event);home.selectedCategory={}">Productos</div><img class="icono" src="images/single-cube.svg">
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="cajabuscador" ng-class="{publicacion: home.selectedEntry==='Publicaciones', comercio: home.selectedEntry==='Comercios', producto: home.selectedEntry==='Productos'}">
+      <div class="divbotonesbuscar w-clearfix">
+        <a class="botonbuscar w-button" ng-click="home.search()"></a>
+        <div class="w-form">
+          <form id="email-form-3" name="email-form-3">
+            <input ng-model="home.query" class="inputbuscar w-input" id="field-2" maxlength="256" name="field-2" placeholder="Buscar {{home.selectedEntry}} en {{home.selectedCityBind.name}}..."  type="text">
+          </form>
+          <div class="w-form-done">
+            <div>Thank you! Your submission has been received!</div>
+          </div>
+          <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="seccionpublic w-clearfix" ng-class="{publicacion: home.selectedEntry==='Publicaciones', comercio: home.selectedEntry==='Comercios', producto: home.selectedEntry==='Productos'}" id="destacados">
+  <div class="dibresul w-clearfix">
+    <div class="route-filters">
+      <!--<span class="resultados">{{home.selectedCityBind.name}} > {{home.selectedEntry}}</span> <span ng-show="home.selectedCategory.id"> > {{home.selectedCategory.name}} {{home.total_found}} </span>-->
+       <p class="resultados">{{home.total_found}} Resultados para {{home.selectedEntry}} de {{home.selectedCategory.name}} en {{home.selectedCityBind.name}}</p> 
+      <div ng-show="home.resultadoFound" class="divflechas w-clearfix">
+          <span class="resultadoss">Página {{home.selectedPage}} de {{home.pages_quantity}}</span>
+          <div class="flechas-container">
+            <div class="flechas">
+              <div ng-disabled="home.selectedPage === home.pages_quantity" ng-click="home.offSet('+'); home.selectPage('+');home.getSelectedEntry(home.selectedEntry, $event, home.selectedCategory)" class="linkflechas w-inline-block"><img ng-show="home.selectedPage !== home.pages_quantity" class="flecharight" src="images/right-arrow.svg">
+              </div>
+            </div>
+            <div class="flechas">
+              <div class="linkflechas w-inline-block" ng-click="home.offSet('-'); home.selectPage('-'); home.getSelectedEntry(home.selectedEntry, $event, home.selectedCategory)"><img ng-show="home.selectedPage > 1" class="flecharight" src="images/left-arrow.svg">
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="divdestacados">
+    <div class="divnuevos divrubros" ng-show="home.selectedEntry == 'Comercios'">
+      <div class="divrub"><img class="imgacat" src="images/store-new-badges.svg"><a class="categoriaslinks" ng-click="home.getEntitiesOrder('creation_date DESC')">Últimos</a>
+      </div>
+      <div class="divrub"><img class="imgacat" src="images/favorite-heart-button.svg"><a class="categoriaslinks" ng-click="home.getEntitiesOrder('totalLikes DESC')">Mas seguidores</a>
+      </div>
+      <div class="calificacion divrub"><img class="imgacat" src="images/star.svg"><a class="categoriaslinks" ng-click="home.getEntitiesOrder('ranking DESC')">Mejor calificación</a>
+      </div>
+    </div>
+    <div class="divrubros">
+      <div ng-repeat="category in home.categories" class="divrub">
+        <img class="imgacat" ng-src="http://104.131.113.114:3002/api/containers/category_{{category.id}}/download/logo.image">
+        <a class="categoriaslinks" href="#" ng-click="home.toggleCategory(category, $event)">{{category.name}}</a>
+        <div class="divrub subcat" ng-show="category.subcategories && category.subcategories.length > 0 && category.open" ng-repeat="sc in category.subcategories">
+          <!-- <img class="imgacat" ng-src="http://104.131.113.114:3002/api/containers/category_{{sc.id}}/download/logo.image"/> -->
+          <a class="categoriaslinks subcat" href="#" ng-click="home.getSelectedEntry(home.selectedEntry, $event, sc); ; home.scrollToSection('#destacados')">{{sc.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divfotosprom w-clearfix" id="fotosprom">
+    <div class="div4 w-clearfix" ng-repeat="item in home.items" ng-if="home.typeResult=='entities'" >
+      <div class="contcarta w-preserve-3d">
+        <div class="frente w-preserve-3d">
+          <div class="comercioimg productoimg" ng-if="item.active" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('http://104.131.113.114:3002/api/containers/entity_{{item.id}}/download/cover.image')">
+            <h1 class="naming">{{item.name}}</h1>
+          </div>
+          <div class="comercioimg productoimg" ng-if="!item.active" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('http://104.131.113.114:3002/api/containers/category_{{item.categories[0].id}}/download/cover.image')">
+            <h1 class="naming">{{item.name}}</h1>
+          </div>
+          <div class="comercios footer w-clearfix">
+            <div class="divlogo">
+              <img class="logotarjeta" ng-if="item.description" src="http://104.131.113.114:3002/api/containers/entity_{{item.id}}/download/logo.image">
+              <img class="logotarjeta" ng-if="!item.description" src="http://104.131.113.114:3002/api/containers/category_{{item.categories[0].id}}/download/logo.image">
+            </div>
+            <div class="datoscomercio">
+              <div class="descripcion">
+                <p class="nombreee">{{item.phone}}</p>
+                <p class="direccion">{{ item.address | cut:true: 18}}</p>
+                <p class="abuierto direccion">{{item.now}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reverso w-preserve-3d">
+          <div class="comercioimg productoimg w-clearfix" ng-if="!item.active" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('http://104.131.113.114:3002/api/containers/category_{{item.categories[0].id}}/download/cover.image')">
+            <div class="divlogo">
+              <img class="logotarjeta" src="http://104.131.113.114:3002/api/containers/category_{{item.categories[0].id}}/download/logo.image">
+            </div>
+            <div class="divbuttons w-clearfix">
+              <a class="boton2 botonestrella w-clearfix w-inline-block" ng-click="rank(item, currentUser.id)" uib-popover="Destacar" popover-trigger="mouseenter"><img class="estrella" src="images/web-mark-as-favorite-star.svg">
+              </a>
+              <a class="botoncorazon w-clearfix w-inline-block" ng-click="like(item, currentUser.id)" uib-popover="Marcar como favorito" popover-trigger="mouseenter"><img class="corazon" src="images/e-commerce-like-heart.svg">
+              </a>
+              <a class="botonestrella w-inline-block" ng-click="send()" uib-popover="Enviar mensaje" popover-trigger="mouseenter"><img class="estrella" src="images/envelope.svg">
+              </a>
+              <a class="botoncorazon w-clearfix w-inline-block" ng-click="suggest()" uib-popover="Sugerir" popover-trigger="mouseenter"><img class="corazon" src="images/share-option.svg">
+              </a>
+            </div>
+          </div>
+          <div class="comercioimg productoimg w-clearfix" ng-if="item.active" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('http://104.131.113.114:3002/api/containers/entity_{{item.id}}/download/cover.image')">
+            <div class="divlogo">
+              <img class="logotarjeta" src="http://104.131.113.114:3002/api/containers/entity_{{item.id}}/download/logo.image">
+            </div>
+            <div class="divbuttons w-clearfix">
+              <a class="boton2 botonestrella w-clearfix w-inline-block" ng-click="rank(item, currentUser.id)" uib-popover="Destacar" popover-trigger="mouseenter"><img class="estrella" src="images/web-mark-as-favorite-star.svg">
+              </a>
+              <a class="botoncorazon w-clearfix w-inline-block" ng-click="like(item, currentUser.id)" uib-popover="Marcar como favorito" popover-trigger="mouseenter"><img class="corazon" src="images/e-commerce-like-heart.svg">
+              </a>
+              <a class="botonestrella w-inline-block" ng-click="send()" uib-popover="Enviar mensaje" popover-trigger="mouseenter"><img class="estrella" src="images/envelope.svg">
+              </a>
+              <a class="botoncorazon w-clearfix w-inline-block" ng-click="suggest()" uib-popover="Sugerir" popover-trigger="mouseenter"><img class="corazon" src="images/share-option.svg">
+              </a>
+            </div>
+          </div>
+          <div class="comercios footer">
+            <div class="datos-atras datoscomercio">
+              <div class="descback descripcion"><a class="verpagina" ui-sref="app.entityDetail({entityId: item.id})">Visitar página web</a>
+                <p class="nameeee nombreee">{{ item.name | cut:true: 30}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+    </div>
+
+    <div class="div4 w-clearfix"  ng-repeat="item in home.items" ng-if="home.typeResult=='adverts'" ng-click="home.openAdvert(item)">
+      <div class="contproducto contpubli" style="height: 446px;">
+        <div class="productoimg publicimg" style="background-image:url('http://104.131.113.114:3002/api/containers/entity_{{item.entityId}}/download/{{item.id}}.advert')">
+          <div class="divprecio">
+            <div class="price">{{ item.price }}</div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="descproducto w-clearfix" style="height: 163px;">
+            <div class="logo"><img class="logopublic" src="http://104.131.113.114:3002/api/containers/entity_{{item.entityId}}/download/logo.image">
+            </div>
+            <h1 class="tituloproduct">{{ item.title | cut:true:'20' }}</h1>
+            <p class="descrippubli">{{ item.description | cut:true:'40' }}</p><a class="ir-a" href="#">Ir a Comercio Premium</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div4 w-clearfix" ng-repeat="item in home.items" ng-if="home.typeResult=='products'" ng-click="home.openProduct(item)">
+      <div class="contproducto contpubli conttt">
+        <div class="img3 productoimg publicimg" style="background-image:url('http://104.131.113.114:3002/api/containers/entity_{{item.entityId}}/download/{{item.images[0]}}')">
+          <div class="divprecio">
+            <div class="price price2">${{item.price}}</div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="descproducto w-clearfix">
+            <div class="divlogo"><img class="logopublic" src="http://104.131.113.114:3002/api/containers/entity_{{item.entityId}}/download/logo.image">
+            </div>
+            <h1 class="tituloproduct">{{ item.title | lowercase | cut:true: '20' }}</h1>
+            <p class="descrippubli">{{ item.description | cut:true:'40' }}</p><a class="ir-a ir-a-prod" href="#">Ir a Comercio Premium</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<div class="seccionmapa" id="mapa"><img src="images/faja-01-3.png">
+  <sabe dir="{{home.directions}}"></sabe>
+</div>
+<div class="seccionvideos w-clearfix" id="videos">
+  <div class="video1">
+    <h1 class="videogtxt1">¿Cómo funciona AZ Club para mi negocio?</h1>
+    <p class="descvideo">Conocé los beneficios que AZ Club tiene para vos, tu comercio o proyecto. Formá parte de la comunidad AZ Club. &nbsp;¡No te quedes afuera!</p>
+    <div class="video w-embed w-video" style="padding-top: 56.17021276595745%;">
+      <iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FZJ0e-Pe4kaM%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DZJ0e-Pe4kaM&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FZJ0e-Pe4kaM%2Fhqdefault.jpg&amp;key=c4e54deccf4d4ec997a64902e9a30300&amp;type=text%2Fhtml&amp;schema=youtube" scrolling="no" frameborder="0" allowfullscreen=""></iframe>
+    </div>
+  </div>
+  <div class="video2">
+    <h1 class="videogtxt1">La ciudad en tu bolsillo</h1>
+    <p class="descvideo">Descubrí toda tu ciudad como nunca antes. No importa el rubro. ¡Todo está aquí! Promociones, eventos, servicios, profesionales, productos... y muchos más</p>
+    <div class="video w-embed w-video" style="padding-top: 56.17021276595745%;">
+      <iframe class="embedly-embed" src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2Fl2rQcqQTYUE%3Ffeature%3Doembed&amp;url=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dl2rQcqQTYUE&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2Fl2rQcqQTYUE%2Fhqdefault.jpg&amp;key=c4e54deccf4d4ec997a64902e9a30300&amp;type=text%2Fhtml&amp;schema=youtube" scrolling="no" frameborder="0" allowfullscreen=""></iframe>
+    </div>
+  </div>
+</div>
+<div class="seccioncontactos w-clearfix" id="contactos">
+  <div class="divredes w-clearfix">
+    <h1 class="seguinos">¡Seguinos!</h1>
+    <a class="linkredes w-inline-block" href="https://www.instagram.com/azclubapp/" target="_blank"><img class="botonred" src="images/instagram-01-1.png">
+    </a>
+    <a class="linkredes w-inline-block" href="https://twitter.com/AZClubApp" target="_blank"><img class="botonred" src="images/twitter-01-1.png">
+    </a>
+    <a class="linkredes w-inline-block" href="https://www.facebook.com/azclubapp/" target="_blank"><img class="botonred" src="images/facebook-01-1.png">
+    </a>
+  </div>
+  <div class="contactanos w-clearfix">
+    <h1 class="contactanostxt">¿Tenés un club para recomendarnos?</h1>
+  </div>
+  <div class="az1 divform">
+    <h1 class="tenesclub">Llená el formulario y lo agregamos a AZ Club</h1>
+    <div class="w-form">
+      <form class="fomr">
+        <div class="rowform w-row">
+          <div class="row1form w-col w-col-6">
+            <div class="divform1">
+              <label class="name" for="name">Nombre del club</label>
+              <input class="namefielad w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Nombre del comercio, entidad o servicio" type="text">
+              <label class="name" for="email">Dirección</label>
+              <input class="direfield w-input" data-name="Email" id="email" maxlength="256" name="email" placeholder="Dirección para ubicar por geolocalización" required="required" type="email">
+            </div>
+          </div>
+          <div class="w-col w-col-6">
+            <div class="div2form">
+              <label class="name" for="email">Teléfono</label>
+              <input class="phonefield w-input" data-name="Email" id="email" maxlength="256" name="email" placeholder="Con la característica de la ciudad para llamadas directas" required="required" type="email">
+              <label class="name" for="field">Rubro</label>
+              <select class="menurubros w-select" id="field" name="field">
+                <option value="">Elegí el rubro</option>
+                <option value="4">Gastronomía</option>
+                <option value="">Indumentaria y accesorios</option>
+                <option value="Third">Tecnología</option>
+                <option value="">Vehículos</option>
+                <option value="">Compras</option>
+                <option value="">Estética</option>
+                <option value="">Discos y pubs</option>
+                <option value="">Salud</option>
+                <option value="">Jardín</option>
+                <option value="">Mascotas</option>
+                <option value="">Porfesionales</option>
+                <option value="">Varios</option>
+                <option value="">Datos útiles</option>
+                <option value="">Impresiones y artículos de oficina</option>
+                <option value="">Educación</option>
+                <option value="">Deporte y bienestar</option>
+                <option value="first">Paseso y centros comerciales</option>
+                <option value="">Prestadoras de servicios</option>
+                <option value="">Hogar y herramientas</option>
+                <option value="">Hotelería y turismo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <input class="submir w-button" data-wait="Enviando solicitud..." type="submit" value="¡Recomendar!" wait="Enviando solicitud...">
+      </form>
+      <div class="w-form-done">
+        <div>Thank you! Your submission has been received!</div>
+      </div>
+      <div class="w-form-fail">
+        <div>Oops! Something went wrong while submitting the form</div>
+      </div>
+    </div>
+  </div>
+</div>

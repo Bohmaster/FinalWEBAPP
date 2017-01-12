@@ -1,0 +1,45 @@
+<div class="subWrapper" style="margin-top: -25px;">
+    <div class="div4 w-clearfix" ng-repeat="item in entities">
+      <div class="contcarta w-preserve-3d">
+        <div class="frente w-preserve-3d">
+          <div class="comercioimg productoimg" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('http://104.131.113.114:3002/api/containers/entity_{{item[0].id}}/download/cover.image')">
+            <h1 class="naming">{{item[0].name}}</h1>
+          </div>
+          <div class="comercios footer w-clearfix">
+            <div class="divlogo"><img class="logotarjeta" src="http://104.131.113.114:3002/api/containers/entity_{{item[0].id}}/download/logo.image">
+            </div>
+            <div class="datoscomercio">
+              <div class="descripcion">
+                <p class="nombreee">{{item[0].phone}}</p>
+                <p class="direccion">{{ item[0].address}}</p>
+                <p class="abuierto direccion">{{item[0].open}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reverso w-preserve-3d">
+          <div class="comercioimg productoimg w-clearfix" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('http://104.131.113.114:3002/api/containers/entity_{{item[0].id}}/download/cover.image')">
+            <div class="divlogo"><img class="logotarjeta" src="http://104.131.113.114:3002/api/containers/entity_{{item[0].id}}/download/logo.image">
+            </div>
+            <div class="divbuttons w-clearfix">
+              <a class="boton2 botonestrella w-clearfix w-inline-block" href="#"><img class="estrella" src="images/web-mark-as-favorite-star.svg">
+              </a>
+              <a class="botoncorazon w-clearfix w-inline-block" href="#"><img class="corazon" src="images/e-commerce-like-heart.svg">
+              </a>
+              <a class="botonestrella w-inline-block" href="#"><img class="estrella" src="images/envelope.svg">
+              </a>
+              <a class="botoncorazon w-clearfix w-inline-block" href="#"><img class="corazon" src="images/share-option.svg">
+              </a>
+            </div>
+          </div>
+          <div class="comercios footer">
+            <div class="datos-atras datoscomercio">
+              <div class="descback descripcion"><a class="verpagina" href="#">Visitar página web</a>
+                <p class="nameeee nombreee">{{ item[0].name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+    </div>
+</div>

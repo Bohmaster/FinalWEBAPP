@@ -1,0 +1,39 @@
+<div class="chatWrapper" style="margin-top: -25px;">
+    <div class="div w-clearfix">
+    <h1 class="titlechaat">Conversaciones</h1>
+    <div class="divbuscarnombre">
+      <div class="w-form">
+        <form id="email-form" style="position:relative;" name="email-form">
+          <input class="inputbuscarnombre w-input" id="field" maxlength="256" name="field" placeholder="Buscar nombre" required="required" type="text" ng-model="filters">
+          <a class="botonbuscarnombre w-button" href="#"></a>
+        </form>
+        <div class="w-form-done">
+          <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+          <div>Oops! Something went wrong while submitting the form</div>
+        </div>
+      </div>
+    </div>
+    <div class="divfav w-clearfix"><img class="chaticon" src="images/chat.png">
+        <h3 class="chatt favoritos">Chats</h3>
+    </div>
+    <div class="divchats">
+        <a class="linkblock w-clearfix w-inline-block" ng-repeat="cr in chatrooms | filter: filters" ng-click="goToChat(cr.id, cr.users[1])">
+            <div class="divhora">
+                <div class="txxthora">{{ cr.last_activity | date : 'medium' }}</div>
+            </div>
+            <div class="imgcont" style="background-image: url('http://104.131.113.114:3002/api/containers/entity_{{cr.users[1].entityId}}/download/logo.image')"></div>
+            <div class="txtcontact">{{ cr.users[1].name }}</div>
+        </a>
+        
+    </div>
+</div>
+<div class="divcaja">
+    
+    <div class="divconv w-clearfix">
+        <ui-view></ui-view>
+    </div>
+    
+</div>
+</div>

@@ -1,0 +1,113 @@
+<div style="position:relative; background: white;">
+  <div class="divperfil" style="margin-top: -25px;" style="background: white;">
+    <div class="divslider">
+      <div class="slider w-slider" data-animation="slide" data-duration="500" data-infinite="1">
+        <div class="w-slider-mask" id="az-slider">
+          
+        </div>
+        <div class="w-slider-arrow-left">
+          <div class="w-icon-slider-left"></div>
+        </div>
+        <div class="w-slider-arrow-right">
+          <div class="w-icon-slider-right"></div>
+        </div>
+        <div class="w-round w-slider-nav"></div>
+      </div>
+    </div>
+    <div class="divinfo w-clearfix">
+      <div class="divname">
+        <div class="txtdato">{{ entity.address }}</div>
+      </div>
+      <div class="divname">
+        <div class="txtdato">{{ entity.phone }}</div>
+      </div>
+      <div class="divname">
+        <div class="abierto">Abierto</div>
+      </div>
+      <div class="divservicios"><img class="iconosservicios" src="images/wifi-01.png"><img class="iconosservicios" src="images/climatizado-01.png"><img class="iconosservicios" src="images/disabled-01.png"><img class="iconosservicios" src="images/envios-01.png"><img class="iconosservicios" src="images/estacionamiento-01.png">
+      </div>
+    </div>
+  </div>
+  <div class="divdatos w-clearfix">
+      <div class="divinfocomercio">
+      <div class="quienessomos">
+        <p>{{entity.description}}</p>
+      </div>
+    </div>
+    <sabe dir="{{entity.address}}"></sabe>
+    
+  </div>
+  <div class="divpromociones w-clearfix">
+    <div class="divtitulopromos w-clearfix">
+      <div class="divicono"><img class="iconopromo" src="images/publis-01.png">
+      </div>
+      <div class="divtitlepromos">
+        <h1 class="titulopromos">Promociones Comercio Premium</h1>
+      </div>
+    </div>
+    <div class="divpromos">
+      <div class="promo1 w-clearfix">
+        <div class="contproducto contpubli" ng-repeat="advert in entity.adverts">
+          <div class="productoimg publicimg">
+            <div class="divprecio">
+              <div class="price">Lunes a Viernes</div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="descproducto w-clearfix">
+              <div class="divlogo"><img class="logotarjeta" src="images/instagram-01-1.png">
+              </div>
+              <h1 class="tituloproduct">Descuentos increíbles</h1>
+              <p class="descrippubli">Nuestro tradicional Happy, ahora extendido con mas sabores y tragos!</p><a class="ir-a" href="#">Ir a Comercio Premium</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="divpromociones w-clearfix">
+    <div class="divtitulopromos w-clearfix">
+      <div class="divicono"><img class="iconopromo" src="images/prod-01.png">
+      </div>
+      <div class="divtitlepromos">
+        <h1 class="titulopromos">Productos Comercio Premium</h1>
+      </div>
+    </div>
+    <div class="divpromos">
+      <div class="promo1 w-clearfix">
+        <div class="contproducto contpubli conttt" ng-repeat="product in entity.products">
+          <div class="img3 productoimg publicimg">
+            <div class="slider1 w-slider" data-animation="slide" data-duration="500" data-infinite="1">
+              <div class="w-slider-mask">
+                <div class="foto1 w-slide">
+                  <div class="divprecio">
+                    <div class="price price2">$500</div>
+                  </div>
+                </div>
+              
+              </div>
+              <div class="w-slider-arrow-left">
+                <div class="w-icon-slider-left"></div>
+              </div>
+              <div class="richtarrow w-slider-arrow-right">
+                <div class="right w-icon-slider-right"></div>
+              </div>
+              <div class="w-round w-slider-nav"></div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="descproducto w-clearfix">
+              <div class="divlogo"><img class="logotarjeta" src="images/instagram-01-1.png">
+              </div>
+              <h1 class="tituloproduct">Samsung Galaxy S7 Plus</h1>
+              <p class="descrippubli">Nuevo Celular Samsung S7. para vos. Núcleos, Screen 3820x2780 px. 4K Full con cable HDMI y USB incluídos en la caja.</p><a class="ir-a ir-a-prod" href="#">Ir a Comercio Premium</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>

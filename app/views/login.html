@@ -1,0 +1,41 @@
+<div class="divlogin" style="float: none;">
+    <div class="imglogin">
+      <h1 class="titellogin">AZ CLUB</h1>
+      <h1 class="desclogin">Descubrí tu ciudad</h1>
+      <div class="formwrtapper w-form">
+        <form id="email-form" name="email-form">
+          <input class="txtfield w-input" data-name="Name" id="name" maxlength="256" name="name" placeholder="Usuario" type="text" ng-model="credentials.username">
+          <input class="txtfield w-input" data-name="Email" id="email" maxlength="256" name="email" placeholder="Contrasena" required="required" type="password" ng-model="credentials.password">
+          <input class="iniciarsesion w-button" data-wait="Cargando..." type="submit" value="Iniciar sesión" ng-click="login(credentials, false)">
+        </form>
+        <div class="w-form-done">
+          <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+          <div>Oops! Something went wrong while submitting the form</div>
+        </div>
+      </div>
+      <div class="divrede w-clearfix">
+        <div class="divfb">
+          <a class="w-inline-block" ng-click="openFacebookLogin()"><img class="imgred" src="images/face-01.png">
+            <div class="fb" >Entrar con Facebook</div>
+          </a>
+        </div>
+        <div class="divfb">
+          <a class="w-inline-block" href="#"><img class="imgred" src="images/gmail-01.png">
+            <div class="fb">Entrar con Gmail</div>
+          </a>
+        </div>
+        <div class="divfb">
+          <a class="w-inline-block" href="#"><img class="imgred" src="images/twee-01.png">
+            <div class="fb">Entrar con Twitter</div>
+          </a>
+        </div>
+        <div class="divfb">
+          <a class="w-inline-block" href="#"><img class="imgred" src="images/email-01.png">
+            <div class="fb">Registrarme con e-mail</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

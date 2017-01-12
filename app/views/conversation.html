@@ -1,0 +1,16 @@
+<div ng-repeat="msg in messages">
+   <div class="chattt w-clearfix" ng-if="msg.usuarioId !== me">
+        <div class="chat1"></div>
+        <div class="horamensaje">{{msg.date | date : 'medium' }}</div>
+        <p class="chat11">{{msg.text}}</p>
+    </div>
+    <div class="chat2 w-clearfix" ng-if="msg.usuarioId == me">
+        <div class="imgemisor"></div>
+        <div class="hora2 horamensaje">{{msg.date | date : 'medium' }}</div>
+        <p class="chat11 chat13">{{msg.text}}</p>
+    </div>
+</div>
+<div contenteditable class="divtxt w-clearfix">
+        <a class="linkenter w-clearfix w-inline-block" style="width: 100%; color: black; padding-left: 10px; text-decoration: none; padding-top: 4px;" ><img class="enter" width="35" height="35" src="images/login.png">
+        </a>
+    </div>
